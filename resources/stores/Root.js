@@ -77,7 +77,6 @@ const useRootStore = Pinia.defineStore( 'root', {
 				thumbnail: queryStore.thumbnail,
 				media: mediaStore.media,
 				description: queryStore.description,
-				links: mediaStore.links,
 				expandedSnippet: queryStore.expandedSnippet
 			};
 

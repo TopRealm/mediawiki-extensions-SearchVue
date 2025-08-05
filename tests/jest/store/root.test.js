@@ -62,7 +62,6 @@ describe( 'Root store', () => {
 						searchLink: 'dummyLink'
 					};
 					query.description = 'DummyDescriptio ';
-					media.links = [ 'dummyLink' ];
 					query.expandedSnippet = 'dummyExpandedSnippet';
 
 					result = store.currentResult;
@@ -95,12 +94,6 @@ describe( 'Root store', () => {
 
 					expect( result ).toEqual(
 						expect.objectContaining( { description: query.description } )
-					);
-				} );
-				it( 'includes links array from state', () => {
-
-					expect( result ).toEqual(
-						expect.objectContaining( { links: media.links } )
 					);
 				} );
 				it( 'includes expandedSnippet from state', () => {

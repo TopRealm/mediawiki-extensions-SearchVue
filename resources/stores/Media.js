@@ -81,8 +81,7 @@ const useMediaStore = Pinia.defineStore( 'media', {
 			images: [],
 			hasMoreImages: false,
 			searchLink: null
-		},
-		links: {}
+		}
 	} ),
 	getters: {
 	},
@@ -113,7 +112,7 @@ const useMediaStore = Pinia.defineStore( 'media', {
 				.done( ( result ) => {
 					if (
 						!result ||
-						( !result.media && !result.links )
+						!result.media
 					) {
 
 						requestStatusStore.setRequestStatus( {
@@ -132,12 +131,6 @@ const useMediaStore = Pinia.defineStore( 'media', {
 						const mediaInfo = formatMediaInfo( result.media, page, isMobile );
 						this.$patch( {
 							media: mediaInfo
-						} );
-					}
-
-					if ( result.links && Object.keys( result.links ).length > 0 ) {
-						this.$patch( {
-							links: result.links
 						} );
 					}
 

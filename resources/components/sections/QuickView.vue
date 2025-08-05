@@ -72,13 +72,6 @@
 				@log-event="onLogEvent"
 				@dom-updated="onDomUpdated"
 			></quick-view-sections>
-			<!-- This is the desktop instance of links-->
-			<quick-view-links
-				v-if="hasLinks && isMobile"
-				:links="currentResult.links"
-				:is-mobile="isMobile"
-				@log-event="onLogEvent"
-			></quick-view-links>
 		</template>
 		<template v-if="showMediaData">
 			<quick-view-commons
@@ -87,13 +80,6 @@
 				@log-event="onLogEvent"
 				@dom-updated="onDomUpdated"
 			></quick-view-commons>
-			<!-- This is the mobile instance of links-->
-			<quick-view-links
-				v-if="hasLinks && !isMobile"
-				:links="currentResult.links"
-				:is-mobile="isMobile"
-				@log-event="onLogEvent"
-			></quick-view-links>
 		</template>
 		<slot
 			name="loading-skeleton"
@@ -119,7 +105,6 @@ const QuickViewImage = require( './QuickViewImage.vue' ),
 	QuickViewSnippet = require( './QuickViewSnippet.vue' ),
 	QuickViewSections = require( './QuickViewSections.vue' ),
 	QuickViewCommons = require( './QuickViewCommons.vue' ),
-	QuickViewLinks = require( './QuickViewLinks.vue' ),
 	mapActions = require( 'pinia' ).mapActions,
 	mapState = require( 'pinia' ).mapState,
 	useEventStore = require( '../../stores/Event.js' ),
@@ -137,8 +122,7 @@ module.exports = exports = {
 		'quick-view-description': QuickViewDescription,
 		'quick-view-snippet': QuickViewSnippet,
 		'quick-view-sections': QuickViewSections,
-		'quick-view-commons': QuickViewCommons,
-		'quick-view-links': QuickViewLinks
+		'quick-view-commons': QuickViewCommons
 	},
 	props: {
 		transitioning: {
@@ -172,10 +156,6 @@ module.exports = exports = {
 			},
 			hasSections() {
 				return this.currentResult.sections && this.currentResult.sections.length > 0;
-			},
-			hasLinks() {
-				return this.currentResult.links &&
-					Object.keys( this.currentResult.links ).length > 0;
 			},
 			textWithEllipsis() {
 

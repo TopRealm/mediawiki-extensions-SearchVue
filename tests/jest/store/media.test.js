@@ -47,7 +47,6 @@ describe( 'Media store', () => {
 
 			expect( store.media.hasMoreImages ).toBeFalsy();
 			expect( store.media.images.length ).toBe( 0 );
-			expect( store.links ).toEqual( {} );
 
 		} );
 		it( 'when commons API has media, it update the store', () => {
@@ -55,16 +54,6 @@ describe( 'Media store', () => {
 
 			expect( store.media.hasMoreImages ).toBeTruthy();
 			expect( store.media.images.length ).not.toBe( 0 );
-
-		} );
-		it( 'when commons API has links, it update the store', () => {
-			store.setMediaInfo( dummyPayload );
-
-			expect( store.links ).toEqual(
-				expect.objectContaining( {
-					enwiki: expect.any( Object )
-				} )
-			);
 
 		} );
 	} );
